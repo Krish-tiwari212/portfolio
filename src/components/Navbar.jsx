@@ -8,7 +8,7 @@ const Navbar = () => {
 
   useEffect(() => {
     // Calculate the viewport height and set it as a CSS variable
-    const vh = window.innerHeight * 0.02;
+    const vh = window.innerHeight * 0.3;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
   }, []);
 
