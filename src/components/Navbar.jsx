@@ -8,7 +8,7 @@ const Navbar = () => {
 
   return (
     <div className='relative z-20 sm:ml-[5rem] -ml-2'>
-      <nav className='w-[100vw] -mt-[1.3rem] pb-[1.4rem] sm:-ml-[10rem] flex justify-between fixed backdrop-blur-lg bg-opacity-80'>
+      <nav className='w-[100vw] sm:-mt-[1.3rem] pb-[1.4rem] sm:-ml-[10rem] flex justify-between fixed backdrop-blur-lg bg-opacity-80'>
         <h3 className='sm:ml-[4rem] ml-3 mt-[1.3rem]'>Full Stack Developer <span className='text-xl tracking-[-0.1em]'>---</span> Krish</h3>
         <button className='sm:hidden pr-5' onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? <RxCross1 className="text-2xl" /> : <TbMenu className="text-2xl mt-5" />}

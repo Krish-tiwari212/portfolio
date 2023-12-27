@@ -29,7 +29,7 @@ const ConstrainedMovementAnimation = () => {
   return (
     <div className="flex justify-center">
       <animated.div
-        className="grayscale absolute top-56 sm:top-10 w-[30rem] sm:w-[43rem] z-10"
+        className="grayscale absolute top-44 sm:top-10 w-[30rem] sm:w-[43rem] z-10"
         style={{
           transform: xy.to((x, y) => `translate3d(${x / 20}px, ${y / 20}px, 0)`),
         }}
