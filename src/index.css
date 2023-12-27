@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@font-face {
+    font-family: 'geist-black';
+    src: url('assets/font/Geist/Geist-Black.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'geist-bold';
+    src: url('assets/font/Geist/Geist-Bold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'geist-light';
+    src: url('assets/font/Geist/Geist-Light.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'geist-medium';
+    src: url('assets/font/Geist/Geist-Medium.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'geist-regular';
+    src: url('assets/font/Geist/Geist-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'turntbb';
+    src: url('assets/font/Geist/TURNBB__.woff2') format('woff2');
+}
+
+.text-shadow-xl {
+    text-shadow: 0 0 80px rgba(229, 229, 229, 0.8), 0 0 20px rgba(229, 229, 229, 0.8);
+}
+
+.image-bg{
+    background-image: linear-gradient(to right, var(--black) 1%, rgba(7, 7, 7, 0) 20%, rgba(7, 7, 7, 0) 80%, var(--black) 99%);
+}
+
+@keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
