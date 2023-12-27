@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+      extend: {
+        clipPath: {
+          'none': 'none',
+          'full': 'inset(0)'
+        }
+      },
       fontFamily: {
         'geist-black': ['geist-black', 'sans'],
         'geist-bold': ['geist-bold', 'sans'],

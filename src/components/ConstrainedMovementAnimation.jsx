@@ -27,7 +27,7 @@ const ConstrainedMovementAnimation = () => {
   const constrainedY = cursorPosition.y < 0 ? 0 : cursorPosition.y > window.innerHeight - 200 ? window.innerHeight - 200 : cursorPosition.y;
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center overflow-hidden">
       <animated.div
         className="grayscale absolute top-44 sm:top-10 w-[30rem] sm:w-[43rem] z-10"
         style={{

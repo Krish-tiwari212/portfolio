@@ -6,10 +6,12 @@ import Section2 from './components/sections/Section2';
 import Section3 from './components/sections/Section3';
 import TableSkeleton from './components/TableSkeleton';
 import { FaArrowTurnDown } from "react-icons/fa6";
+import Navbar from './components/Navbar';
 
 const App = () => {
   return (
     <div className='bg-[#060606] font-geist-regular text-[#e6e6e6]'>
+      <Navbar />
       <Section1 />
       <Section2 />
       <Section3 />
@@ -19,7 +21,7 @@ const App = () => {
         <TableSkeleton numCoulmns={9} numRows={1} cl="" cd= "absolute -mt-7"/>
         <div className='flex'>
           <h2>
-            
+
           </h2>
         </div>
       </section>
