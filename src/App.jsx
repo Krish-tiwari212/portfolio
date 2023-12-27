@@ -9,6 +9,7 @@ import { motion, useScroll, useSpring } from 'framer-motion';
 import scroll from './assets/images/Scroll.png';
 import Navbar from './components/Navbar';
 import StickyScroll from './components/StickyScroll';
+import ProjectCard from './components/ProjectCard';
 
 const App = () => {
   return (
@@ -51,6 +52,7 @@ const App = () => {
           />
           
       </section>
+      <ProjectCard />
     </div>
   );
 };
