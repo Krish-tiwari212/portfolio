@@ -4,7 +4,7 @@ const TableSkeleton = ({numCoulmns, numRows, cl, cd}) => {
   
   return (
     <div className="py-6">
-      <table className={`min-w-full border border-[#b97d7d] ${cd}`}>
+      <table className={`min-w-full border border-[#6b6b6b] ${cd}`}>
         <tbody>
           {Array.from({ length: numRows }, (_, rowIndex) => (
             <tr key={rowIndex}>

@@ -1,74 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import { useSpring, animated, config } from 'react-spring';
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ProjectCard from './ProjectCard';
+import { useGSAP } from '@gsap/react';
+import vitrate from '../assets/images/vitrate.png';
+import raccoon from '../assets/images/raccoon.png';
+import groco from '../assets/images/groco.png';
+import avidya from '../assets/images/avidya.png';
+import travor from '../assets/images/travor.png';
 
-const cardsData = [
-  {
-    imgSrc:
-      'https://images.pexels.com/photos/208701/pexels-photo-208701.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    title: 'Venice',
-    description: 'The City of Bridges',
-  },
-  {
-    imgSrc:
-      'https://images.pexels.com/photos/4916695/pexels-photo-4916695.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    title: 'Milan',
-    description: 'The Little Madonna',
-  },
-  {
-    imgSrc:
-      'https://images.pexels.com/photos/16054007/pexels-photo-16054007/free-photo-of-facade-of-the-trattoria-antico-fattore-in-florence-italy.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    title: 'Florence',
-    description: 'The City of Lillies',
-  },
-  {
-    imgSrc:
-      'https://images.pexels.com/photos/2676602/pexels-photo-2676602.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    title: 'Rome',
-    description: 'The Eternal City',
-  },
-];
+gsap.registerPlugin(ScrollTrigger);
 
 const StickyScroll = () => {
-  const [scrollY, setScrollY] = useState(0);
+  const cardContainerRef = useRef(null);
 
-  const handleScroll = () => {
-    setScrollY(window.scrollY);
-  };
+  useGSAP(() => {
+    const cards = gsap.utils.toArray(cardContainerRef.current.querySelectorAll(".card"));
 
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+    cards.forEach((card, index) => {
+      
+      gsap.to(card, {
+        scrollTrigger: {
+          trigger: card,
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+        ease: "none",
+      });
 
-  const cardProps = useSpring({
-    opacity: 1,
-    transform: `translate3d(0, ${scrollY / 2}px, 0)`,
-    config: config.wobbly,
+      ScrollTrigger.create({
+        trigger: card,
+        start: "center center",
+        pin: true,
+        pinSpacing: false,
+        end: () => `+=${card.offsetHeight}-500px`,
+        invalidateOnRefresh: true,
+      });
+    });
+    
   });
-
   return (
-    <div>
-      {cardsData.map((card, index) => (
-        <animated.div
-          key={index}
-          className="card-wrapper"
-          style={{
-            ...cardProps,
-            zIndex: cardsData.length - index,
-          }}
-        >
-          <div className="card-contents">
-            <img src={card.imgSrc} alt={card.title} />
-            <div className="card-description">
-              <h1>{card.title}</h1>
-              <p>{card.description}</p>
-            </div>
-          </div>
-        </animated.div>
-      ))}
-    </div>
+    
+        <div className='cards pb-10' ref={cardContainerRef}>
+            <ProjectCard color="bg-[#F2AFEF]" cl="card" name="Vitrate" year="2023" image={vitrate} techstack="Flask, Postgresql, Postman, Algolia, Js"/>
+            <ProjectCard color="bg-[#F1E4C3]" cl="card" name="Raccoon" year="2023" image={raccoon} techstack="Flask, Snipcart, Postgresql, Postman, Algolia, Js"/>
+            <ProjectCard color="bg-[#C6A969]" cl="card" name="Groco" year="2023" image={groco} techstack="Flask, Postgresql, Postman, Snipcart, Js"/>
+            <ProjectCard color="bg-[#C6CF9B]" cl="card" name="Avidya" year="2023" image={avidya} techstack="Flask, Postgresql, Postman, Snipcart, Js"/>
+            <ProjectCard color="bg-[#FF9800]" cl="card" name="Travor" year="2023" image={travor} techstack="Flask, Postgresql, Postman, Algolia, Js, Snipcart"/>
+        </div>
+    
   );
 };
 

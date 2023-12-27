@@ -1,22 +1,21 @@
 import React from 'react';
 import { IoArrowBackCircleSharp } from 'react-icons/io5';
-import vitrate from '../assets/images/vitrate.png';
 
-const ProjectCard = () => {
+const ProjectCard = ({ cl, color, index, year, techstack, name, image }) => {
   return (
-    <div className='h-[37rem] bg-[#d9ff04] overflow-hidden font-geist-light mx-20 p-5 rounded-2xl'>
+    <div className={`lg:mb-10 h-[68vh] mb-20 ${cl} ${color} overflow-hidden font-geist-light p-5 rounded-2xl relative mt-${index * 10}vh`}>
       <div className='flex'>
-        <h2 className='text-black font-thin'>2022</h2>
-        <h2 className='text-black font-thin ml-auto'>React, Tailwind, Framer Motion, Flask</h2>
+        <h2 className='text-black font-thin'>{year}</h2>
+        <h2 className='text-black font-thin ml-auto'>{techstack}</h2>
       </div>
       <div className='border-[0.1em] border-[#2e2828] mt-3' />
       <div className='flex mt-4'>
-        <h2 className='text-black font-bold text-4xl'>Project Name</h2>
-        <IoArrowBackCircleSharp className='ml-auto text-4xl text-black hover:scale-[110%] rotate-[135deg]' />
+        <h2 className='text-black font-bold text-4xl'>{name}</h2>
+        <a className='ml-auto' href="#"><IoArrowBackCircleSharp className='text-4xl text-black hover:scale-[110%] rotate-[135deg]' /></a>
       </div>
       <img
-        className='mt-5 object-center h-[27rem] object-cover w-full '
-        src={vitrate}
+        className='mt-5 object-center h-auto object-cover w-full' // Use w-full to make it full width
+        src={image}
         alt=''
       />
     </div>

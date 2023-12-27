@@ -8,13 +8,13 @@ import asterisk from "./assets/images/asterisk.svg";
 import { motion, useScroll, useSpring } from 'framer-motion';
 import scroll from './assets/images/Scroll.png';
 import Navbar from './components/Navbar';
+import { FaArrowTurnDown } from "react-icons/fa6";
 import StickyScroll from './components/StickyScroll';
-import ProjectCard from './components/ProjectCard';
 
 const App = () => {
   return (
     <div className='bg-[#060606] font-geist-regular text-[#e6e6e6]'>
-      <section className='h-[100vh] px-20 pt-5 overflow-hidden relative border-[#8a7979] border-b-[1px]'>
+      <section className='h-[100vh] px-20 pt-5 overflow-hidden relative border-[#6b6b6b] border-b-[1px]'>
         <Navbar />
 
         <div className='mt-[1.7rem]'>
@@ -23,7 +23,7 @@ const App = () => {
           <Marquee />
         </div>
       </section>
-      <section className='h-[80vh] -mt-6 mx-20  relative'>
+      <section className='h-[75vh] -mt-6 mx-20  relative'>
         <TableSkeleton numCoulmns={9} numRows={1} cl="h-[70vh]" cd= ""/>
         <h2 className='px-[2vw] text-center top-[14vh] absolute font-geist-regular text-6xl'>Full Stack Developer committed to crafting elegant solutions and experience</h2>
         <div className='flex'>
@@ -52,7 +52,12 @@ const App = () => {
           />
           
       </section>
-      <ProjectCard />
+      <section className='mx-20 relative'>
+        <h2 className='flex text-4xl mb-7 font-geist-light'><FaArrowTurnDown className="mr-2 mt-2 font-light text-3xl"/> Projects </h2>
+        <hr />
+        <TableSkeleton numCoulmns={9} numRows={1} cl="h-[350vh]" cd= "absolute -mt-7"/>
+        <StickyScroll />
+      </section>
     </div>
   );
 };
