@@ -29,9 +29,9 @@ const ConstrainedMovementAnimation = () => {
   return (
     <div className="flex justify-center">
       <animated.div
-        className="grayscale absolute top-20 w-[43rem] z-10"
+        className="grayscale absolute top-56 sm:top-10 w-[30rem] sm:w-[43rem] z-10"
         style={{
-          transform: xy.interpolate((x, y) => `translate3d(${x / 20}px, ${y / 20}px, 0)`),
+          transform: xy.to((x, y) => `translate3d(${x / 20}px, ${y / 20}px, 0)`),
         }}
       >
         <img src={MyImg} alt="My Image" />

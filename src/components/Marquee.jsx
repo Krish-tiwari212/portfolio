@@ -25,7 +25,7 @@ const Marquee = () => {
     <motion.div
       ref={containerRef}
       animate={controls}
-      className="track absolute top-[30vh] min-w-max overflow-hidden font-geist-bold font-bold text-[15rem] text-white"
+      className="track absolute top-[15vh] sm:top-[30vh] min-w-max overflow-hidden font-geist-bold font-bold text-[15rem] text-white"
       style={{ whiteSpace: "nowrap" }}
     >
       <h1 className="text-shadow-xl">

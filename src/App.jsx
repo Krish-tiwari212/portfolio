@@ -1,62 +1,27 @@
 // App.js
 import React from 'react';
-import TableSkeleton from './components/TableSkeleton';
-import ConstrainedMovementAnimation from './components/ConstrainedMovementAnimation';
-import Marquee from './components/Marquee';
 import './index.css';
-import asterisk from "./assets/images/asterisk.svg";
-import { motion, useScroll, useSpring } from 'framer-motion';
-import scroll from './assets/images/Scroll.png';
-import Navbar from './components/Navbar';
+import Section1 from './components/sections/Section1';
+import Section2 from './components/sections/Section2';
+import Section3 from './components/sections/Section3';
+import TableSkeleton from './components/TableSkeleton';
 import { FaArrowTurnDown } from "react-icons/fa6";
-import StickyScroll from './components/StickyScroll';
 
 const App = () => {
   return (
     <div className='bg-[#060606] font-geist-regular text-[#e6e6e6]'>
-      <section className='h-[100vh] px-20 pt-5 overflow-hidden relative border-[#6b6b6b] border-b-[1px]'>
-        <Navbar />
-
-        <div className='mt-[1.7rem]'>
-          <TableSkeleton numCoulmns={17} numRows={16}/>
-          <ConstrainedMovementAnimation />
-          <Marquee />
-        </div>
-      </section>
-      <section className='h-[75vh] -mt-6 mx-20  relative'>
-        <TableSkeleton numCoulmns={9} numRows={1} cl="h-[70vh]" cd= ""/>
-        <h2 className='px-[2vw] text-center top-[14vh] absolute font-geist-regular text-6xl'>Full Stack Developer committed to crafting elegant solutions and experience</h2>
-        <div className='flex'>
-          <h3 className='absolute bg-[#060606] text-center z-10 right-[18vh] top-[56.5vh] text-lg '>Open to Work <br /> <span className='text-[1rem] text-[#8a7979] '>Based in India</span></h3>
-          <motion.img
-            className='absolute z-10 top-[57.5vh] right-[13vh]'
-            src={asterisk}
-            alt='Spinning Asterisk'
-            animate={{ rotate: 360 }}
-            transition={{ ease: "linear", duration: 2, repeat: Infinity }}
-          />        
-        </div>
-        <motion.img
-            className='absolute z-10 top-[50vh] left-[18vh] w-[10rem]'
-            src={scroll}
-            alt='Spinning text'
-            animate={{ rotate: 360 }}
-            transition={{ ease: "linear", duration: 7, repeat: Infinity }}
-          />
-          <motion.img
-            className='absolute z-10 w-5 top-[57.5vh] left-[25.4vh]'
-            src={asterisk}
-            alt='Spinning Asterisk'
-            animate={{ rotate: -360 }}
-            transition={{ ease: "linear", duration: 5, repeat: Infinity }}
-          />
-          
-      </section>
+      <Section1 />
+      <Section2 />
+      <Section3 />
       <section className='mx-20 relative'>
-        <h2 className='flex text-4xl mb-7 font-geist-light'><FaArrowTurnDown className="mr-2 mt-2 font-light text-3xl"/> Projects </h2>
+        <h2 className='flex text-4xl mb-6 mt-4 font-geist-light'><FaArrowTurnDown className="mr-2 mt-2 font-light text-3xl"/> About Me </h2>
         <hr />
-        <TableSkeleton numCoulmns={9} numRows={1} cl="h-[350vh]" cd= "absolute -mt-7"/>
-        <StickyScroll />
+        <TableSkeleton numCoulmns={9} numRows={1} cl="" cd= "absolute -mt-7"/>
+        <div className='flex'>
+          <h2>
+            
+          </h2>
+        </div>
       </section>
     </div>
   );
