@@ -1,30 +1,25 @@
-import React, { useRef, useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
+import React, { useRef } from "react";
+import { gsap } from "gsap";
+import { useGSAP } from '@gsap/react';
 
 const Marquee = () => {
   const containerRef = useRef(null);
-  const controls = useAnimation();
 
-  useEffect(() => {
+  useGSAP(() => {
     const containerWidth = containerRef.current.clientWidth;
     const animationDuration = containerWidth / 50; 
-    controls.start({
-      x: [-containerWidth, 0],
-      transition: {
-        x: {
-          repeat: Infinity,
-          repeatType: "loop",
-          duration: animationDuration/5,
-          ease: "linear",
-        },
-      },
+
+    gsap.to(containerRef.current, {
+      x: -containerWidth,
+      repeat: -1,
+      duration: animationDuration / 5,
+      ease: "none",
     });
-  }, [controls]);
+  }, []);
 
   return (
-    <motion.div
+    <div
       ref={containerRef}
-      animate={controls}
       className="track absolute top-[3vh] sm:top-[30vh] min-w-max overflow-hidden font-geist-bold font-bold text-[15rem] text-white"
       style={{ whiteSpace: "nowrap" }}
     >
@@ -32,7 +27,7 @@ const Marquee = () => {
         KRISH 克里希 クリシュ कृष கிரிஷ் KRISH 克里希 クリシュ कृष கிரிஷ் KRISH 克里希 クリシュ कृष கிரிஷ்
         KRISH 克里希 クリシュ कृष கிரிஷ் KRISH 克里希 クリシュ कृष கிரிஷ் KRISH 克里希 クリシュ कृष கிரிஷ்
       </h1>
-    </motion.div>
+    </div>
   );
 };
 

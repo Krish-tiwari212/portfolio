@@ -1,13 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { useSpring, animated, config } from 'react-spring';
+import React, { useRef } from 'react';
+import { gsap } from 'gsap';
 import MyImg from '../assets/images/me.png';
+import { useGSAP } from '@gsap/react';
+
 
 const ConstrainedMovementAnimation = () => {
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const imgRef = useRef(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const updateCursorPosition = (e) => {
-      setCursorPosition({ x: e.clientX, y: e.clientY });
+      const constrainedX = e.clientX < 0 ? 0 : e.clientX > window.innerWidth - 200 ? window.innerWidth - 200 : e.clientX;
+      const constrainedY = e.clientY < 0 ? 0 : e.clientY > window.innerHeight - 200 ? window.innerHeight - 200 : e.clientY;
+
+      gsap.to(imgRef.current, {
+        x: constrainedX / 20,
+        y: constrainedY / 20,
+        duration: 0.5,
+      });
     };
 
     window.addEventListener('mousemove', updateCursorPosition);
@@ -17,25 +26,14 @@ const ConstrainedMovementAnimation = () => {
     };
   }, []);
 
-  const [{ xy }, set] = useSpring(() => ({ xy: [0, 0], config: config.default }));
-
-  useEffect(() => {
-    set({ xy: [cursorPosition.x, cursorPosition.y] });
-  }, [cursorPosition.x, cursorPosition.y, set]);
-
-  const constrainedX = cursorPosition.x < 0 ? 0 : cursorPosition.x > window.innerWidth - 200 ? window.innerWidth - 200 : cursorPosition.x;
-  const constrainedY = cursorPosition.y < 0 ? 0 : cursorPosition.y > window.innerHeight - 200 ? window.innerHeight - 200 : cursorPosition.y;
-
   return (
     <div className="flex justify-center overflow-hidden">
-      <animated.div
+      <div
+        ref={imgRef}
         className="grayscale absolute top-[10vh] sm:top-[-3vh] w-[30rem] sm:w-[43rem] z-10"
-        style={{
-          transform: xy.to((x, y) => `translate3d(${x / 20}px, ${y / 20}px, 0)`),
-        }}
       >
-        <img src={MyImg} alt="My Image" />
-      </animated.div>
+        <img src={MyImg} alt="Me" />
+      </div>
     </div>
   );
 };
