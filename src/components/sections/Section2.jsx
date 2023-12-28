@@ -28,7 +28,7 @@ const Section2 = () => {
             transition={{ ease: "linear", duration: 7, repeat: Infinity }}
           />
           <motion.img
-            className='absolute z-10 w-5 left-[8vh] top-[49.1vh] sm:top-[51vh] sm:left-[22.1vh]'
+            className='absolute z-10 w-5 left-[7.5vh] top-[49vh] sm:top-[51vh] sm:left-[22.1vh]'
             src={asterisk}
             alt='Spinning Asterisk'
             animate={{ rotate: -360 }}
