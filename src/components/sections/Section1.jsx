@@ -7,7 +7,7 @@ import "../../index.css";
 
 const Section1 = () => {
   return (
-    <section className='h-[100dvh] px-2 sm:px-20 pt-5 -mt-4 cont relative border-[#6b6b6b] border-b-[1px]'>
+    <section className='h-[100dvh] px-2 sm:px-20 pt-4 -mt-4 cont relative border-[#6b6b6b] border-b-[1px]'>
         <div>
           <TableSkeleton numCoulmns={17} numRows={16}/>
           <ConstrainedMovementAnimation />
