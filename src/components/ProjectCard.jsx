@@ -6,7 +6,7 @@ const ProjectCard = ({ cl, color, index, year, techstack, name, image, url }) =>
     <div className={`lg:mb-10 h-[45vh] lg:h-[80vh] md:h-[58vh] sm:h-[48vh] mb-10 sm:mb-20 ${cl} ${color} overflow-hidden font-geist-light p-5 rounded-2xl relative mt-${index * 10}vh`}>
       <div className='flex'>
         <h2 className='text-black font-thin'>{year}</h2>
-        <h2 className='text-black font-thin ml-auto'>{techstack}</h2>
+        <h2 className='text-black font-thin ml-20 sm:ml-auto'>{techstack}</h2>
       </div>
       <div className='border-[0.1em] border-[#2e2828] mt-3' />
       <div className='flex mt-4'>
