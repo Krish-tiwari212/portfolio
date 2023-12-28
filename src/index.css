@@ -54,3 +54,6 @@
     contain: paint;
 }
 
+body{
+    height: 100%;
+}
