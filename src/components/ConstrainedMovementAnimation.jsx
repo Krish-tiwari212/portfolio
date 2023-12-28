@@ -29,7 +29,7 @@ const ConstrainedMovementAnimation = () => {
   return (
     <div className="flex justify-center overflow-hidden">
       <animated.div
-        className="grayscale absolute top-32 sm:top-10 w-[35rem] sm:w-[43rem] z-10"
+        className="grayscale absolute top-[10vh] sm:top-[-3vh] w-[33rem] sm:w-[43rem] z-10"
         style={{
           transform: xy.to((x, y) => `translate3d(${x / 20}px, ${y / 20}px, 0)`),
         }}
