@@ -3,7 +3,7 @@ import { IoArrowBackCircleSharp } from 'react-icons/io5';
 
 const ProjectCard = ({ cl, color, index, year, techstack, name, image, url }) => {
   return (
-    <div className={`lg:mb-10 h-[68vh] mb-20 ${cl} ${color} overflow-hidden font-geist-light p-5 rounded-2xl relative mt-${index * 10}vh`}>
+    <div className={`lg:mb-10 h-[45vh] lg:h-[80vh] md:h-[58vh] sm:h-[48vh] mb-10 sm:mb-20 ${cl} ${color} overflow-hidden font-geist-light p-5 rounded-2xl relative mt-${index * 10}vh`}>
       <div className='flex'>
         <h2 className='text-black font-thin'>{year}</h2>
         <h2 className='text-black font-thin ml-auto'>{techstack}</h2>
