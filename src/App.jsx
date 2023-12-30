@@ -37,7 +37,7 @@ const App = () => {
       <Section3 />
       <section className='mx-2 sm:mx-20 lg:mx-40 relative'>
         <h2 className='flex text-[5vh] font-bold pb-2 mt-7 font-geist-light'>
-          <FaArrowTurnDown className='mt-3 font-light text-[4vh]' /> About
+          <FaArrowTurnDown className='mt-3 font-geist-light text-[4vh]' /> About
         </h2>
         <hr/>
         <TableSkeleton numCoulmns={9} numRows={1} cl='' cd='absolute -mt-7 h-[143vh] sm:h-[130vh] lg:h-[90vh]' />
