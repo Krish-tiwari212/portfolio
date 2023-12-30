@@ -40,8 +40,8 @@ const App = () => {
           <FaArrowTurnDown className='mt-3 font-light text-[4vh]' /> About
         </h2>
         <hr/>
-        <TableSkeleton numCoulmns={9} numRows={1} cl='' cd='absolute -mt-7 h-[175vh] sm:h-[130vh] lg:h-[90vh]' />
-        <div className='h-[175vh] sm:h-[131vh] lg:h-[90vh] lg:flex'>
+        <TableSkeleton numCoulmns={9} numRows={1} cl='' cd='absolute -mt-7 h-[160vh] sm:h-[130vh] lg:h-[90vh]' />
+        <div className='h-[160vh] sm:h-[131vh] lg:h-[90vh] lg:flex'>
           <div className='-mt-12 lg:right-0 cont lg:order-2 lg:absolute h-[80vh] lg:w-[35vw]'>
             <img src={real_me} alt="" srcset="" className='grayscale object-cover object-center w-full h-full' />
           </div>
