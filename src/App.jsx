@@ -40,13 +40,13 @@ const App = () => {
           <FaArrowTurnDown className='mt-3 font-light text-[4vh]' /> About
         </h2>
         <hr/>
-        <TableSkeleton numCoulmns={9} numRows={1} cl='' cd='absolute -mt-7 h-[158vh] sm:h-[130vh] lg:h-[90vh]' />
-        <div className='h-[158vh] sm:h-[131vh] lg:h-[90vh] lg:flex'>
+        <TableSkeleton numCoulmns={9} numRows={1} cl='' cd='absolute -mt-7 h-[143vh] sm:h-[130vh] lg:h-[90vh]' />
+        <div className='h-[143vh] sm:h-[131vh] lg:h-[90vh] lg:flex'>
           <div className='-mt-12 lg:right-0 cont lg:order-2 lg:absolute h-[80vh] lg:w-[35vw]'>
             <img src={real_me} alt="" srcset="" className='grayscale object-cover object-center w-full h-full' />
           </div>
-          <div className='lg:order-1 pt-5 lg:pt-10 lg:pr-10 absolute lg:static md:mt-6 lg:w-1/2'>
-            <h2 className='lg:text-[2.5rem] text-[8.9vw]  sm:text-4xl leading-[2.7rem] z-[100]'>
+          <div className='lg:order-1 pt-5 lg:pt-0 lg:pr-10 absolute lg:static md:mt-6 lg:w-1/2'>
+            <h2 className='lg:text-5xl text-[8vw]  sm:text-[5vw] leading-[3rem] z-[100]'>
               Hi, I'm Krish! a dedicated Full Stack Developer, seamlessly weaving the art of coding with a passion for fitness and the exacting precision of culinary craftsmanship. Embark on this journey with me, where technology meets well-being.          
             </h2>
           </div>
