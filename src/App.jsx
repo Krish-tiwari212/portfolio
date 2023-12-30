@@ -46,7 +46,7 @@ const App = () => {
             <img src={real_me} alt="" srcset="" className='grayscale object-cover object-center w-full h-full' />
           </div>
           <div className='lg:order-1 pt-5 lg:pt-0 lg:pr-10 absolute lg:static md:mt-6 lg:w-1/2'>
-            <h2 className='lg:text-5xl text-[7.6vw] leading-[2.8rem] z-[100]'>
+            <h2 className='lg:text-5xl text-[8vw] leading-[5vh] z-[100]'>
               Hi, I'm Krish! a dedicated Full Stack Developer, seamlessly weaving the art of coding with a passion for fitness and the exacting precision of culinary craftsmanship. Embark on this journey with me, where technology meets well-being.          
             </h2>
           </div>
