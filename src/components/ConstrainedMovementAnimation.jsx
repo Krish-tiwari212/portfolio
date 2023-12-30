@@ -30,7 +30,7 @@ const ConstrainedMovementAnimation = () => {
     <div className="flex justify-center overflow-hidden">
       <div
         ref={imgRef}
-        className="grayscale absolute top-[10vh] sm:top-[-3vh] w-[30rem] sm:w-[48rem] z-10"
+        className="grayscale absolute bottom-0 sm:top-1 w-[55vh] sm:w-[48rem] z-10"
       >
         <img src={MyImg} alt="Me" />
       </div>

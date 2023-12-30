@@ -41,7 +41,7 @@ const StickyScroll = () => {
   });
   return (
     
-        <div className='cards pb-[54vh] sm:pb-[47vh] md:pb-[58vh] lg:pb-[83vh]' ref={cardContainerRef}>
+        <div className='cards -mt-5 pb-[39.5vh] sm:pb-[42vh] md:pb-[52vh] lg:pb-[74vh]' ref={cardContainerRef}>
             <ProjectCard color="bg-[#F2AFEF]" cl="card" name="Vitrate" year="2023" image={vitrate} techstack="Flask, Postgresql, Postman, Algolia, Js"/>
             <ProjectCard color="bg-[#F1E4C3]" cl="card" name="Raccoon" year="2023" image={raccoon} techstack="Flask, Snipcart, Postgresql, Postman, Js"/>
             <ProjectCard color="bg-[#C6A969]" cl="card" name="Groco" year="2023" image={groco} techstack="Flask, Postgresql, Postman, Snipcart, Js"/>
