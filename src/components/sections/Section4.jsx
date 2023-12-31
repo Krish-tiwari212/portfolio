@@ -11,7 +11,7 @@ const Section4 = () => {
         </h2>
         <hr/>
         <TableSkeleton numCoulmns={8} numRows={1} cl='' cd='absolute -mt-7 h-[143vh] sm:h-[130vh] lg:h-[90vh]' />
-        <div className='h-[140vh] sm:h-[131vh] md:h-[127vh] lg:h-[90vh] lg:flex'>
+        <div className='h-[140vh] sm:h-[131vh] md:h-[127vh] lg:h-[83vh] lg:flex'>
           <div className='-mt-12 lg:right-0 cont lg:order-2 lg:absolute h-[80vh] lg:w-[35vw]'>
             <img src={real_me} alt="" srcset="" className='grayscale object-cover object-center w-full h-full' />
           </div>

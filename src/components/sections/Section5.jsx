@@ -23,8 +23,8 @@ const Section5 = () => {
           <FaArrowTurnDown className='mt-3 font-geist-light text-[3vh]' /> Stack
         </h2>
         <hr/>
-        <TableSkeleton numCoulmns={8} numRows={1} cl='' cd='absolute -mt-7 h-[110vh] sm:h-[90vh] lg:h-[90vh]' />
-        <div className='h-[105vh] sm:h-[131vh] md:h-[85vh] lg:h-[90vh]'>
+        <TableSkeleton numCoulmns={8} numRows={1} cl='' cd='absolute -mt-7 h-[110vh] sm:h-[100vh] lg:h-[90vh]' />
+        <div className='h-[110vh] -mt-8 sm:h-[100vh] md:h-[100vh] lg:h-[95vh]'>
             <div className='flex justify-around'>
                 <Stack logo={IoLogoFigma} name="Figma" category="Design"/>
                 <Stack logo={SiPostman} name="Postman" category="Api"/>
