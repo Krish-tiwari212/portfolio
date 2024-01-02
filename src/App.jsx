@@ -32,6 +32,10 @@ const App = () => {
       console.log(e);
     });
 
+    lenis.on('touch', (e) => {
+      console.log(e);
+    });
+
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
