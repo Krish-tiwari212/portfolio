@@ -22,8 +22,8 @@ const Section6 = () => {
           <FaArrowTurnDown className='mt-3 font-geist-light text-[3vh]' /> Contact
         </h2>
         <hr className='-mt-1'/>
-        <TableSkeleton numCoulmns={numColumns} numRows={numRows} cl='' cd='absolute h-[38rem]  -mt-7 sm:h-[10rem]' />
-        <div className='h-[40rem] relative'>
+        <TableSkeleton numCoulmns={numColumns} numRows={numRows} cl='' cd='absolute h-[38rem] -mt-7 sm:h-[10rem]' />
+        <div className='h-[44rem] relative'>
             <div className='absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center -mt-[8rem]'>
                 <BlurredCircle />
             </div>
