@@ -8,6 +8,7 @@ import Section3 from './components/sections/Section3';
 import './index.css'; 
 import Section4 from './components/sections/Section4';
 import Section5 from './components/sections/Section5';
+import Section6 from './components/sections/Section6';
 
 const App = () => {
   useEffect(() => {
@@ -36,6 +37,7 @@ const App = () => {
       <Section3 />
       <Section4 />
       <Section5 />
+      <Section6 />
     </div>
   );
 };

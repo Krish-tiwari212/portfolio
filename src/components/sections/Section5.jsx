@@ -25,9 +25,8 @@ const Section5 = () => {
         <h2 className='flex text-[4vh] font-bold pb-2 mt-7 font-geist-light'>
           <FaArrowTurnDown className='mt-3 font-geist-light text-[3vh]' /> Stack
         </h2>
-        <hr/>
-        <TableSkeleton numCoulmns={8} numRows={1} cl='' cd='absolute -mt-7 h-[63rem] sm:h-[64rem] lg:h-[65rem]' />
-        <div className='h-[62rem] -mt-8 sm:h-[63rem] lg:h-[65rem]'>
+        <TableSkeleton numCoulmns={8} numRows={1} cl='' cd='absolute -mt-7 h-[63rem] sm:h-[64rem] lg:h-[65rem] border-t-2 border-slate-50' />
+        <div className='h-[60rem] -mt-8 sm:h-[61rem] lg:h-[62rem]'>
             <div className='flex justify-around'>
                 <Stack logo={IoLogoFigma} name="Figma" category="Design"/>
                 <Stack logo={SiPostman} name="Postman" category="Api"/>

@@ -9,7 +9,7 @@ const TableSkeleton = ({numCoulmns, numRows, cl, cd}) => {
           {Array.from({ length: numRows }, (_, rowIndex) => (
             <tr key={rowIndex}>
               {Array.from({ length: numCoulmns }, (_, rowIndex) => (
-                <td className={`py-7 px-4 border border-[#2b2b2b] ${cl}`}></td>
+                <td className={`py-[3.5vh] px-[2vw] border border-[#2b2b2b] ${cl}`}></td>
               ))}  
             </tr>
           ))}
