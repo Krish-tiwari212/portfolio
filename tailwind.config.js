@@ -24,6 +24,6 @@ export default {
   },
   plugins: [],
   corePlugins: {
-    animation: false,
+    animation: true,
   }
 }
