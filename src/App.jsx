@@ -27,7 +27,9 @@ const App = () => {
       });
     }
 
-    const lenis = new Lenis({ lerp: 0.05, smoothTouch: true, touchMultiplier: 2.5 });
+    const lerpValue = window.innerWidth <= 768 ? 0.1 : 0.05;
+
+    const lenis = new Lenis({ lerp: lerpValue, smoothTouch: true });
     lenis.on('scroll', (e) => {
       console.log(e);
     });
