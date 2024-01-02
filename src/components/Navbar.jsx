@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollToPlugin);
 
 const Navbar = () => {
   const navItems = {
-    'Resume': '#',
+    'Resume': 'https://drive.google.com/file/d/1AErwhAIicSi22zNrgfNvNTnM82tRDqSh/view?usp=sharing',
     'About': '#about',
     'LinkedIn': 'https://www.linkedin.com/in/krish-tiwari',
     'Contact': '#contact'
