@@ -24,7 +24,7 @@ const Section6 = () => {
         <hr className='-mt-1'/>
         <TableSkeleton numCoulmns={numColumns} numRows={numRows} cl='' cd='absolute h-[38rem]  -mt-7 sm:h-[10rem]' />
         <div className='h-[40rem] relative'>
-            <div className='absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center -mt-10'>
+            <div className='absolute top-0 right-0 bottom-0 left-0 flex items-center justify-center -mt-[8rem]'>
                 <BlurredCircle />
             </div>
             <p className='absolute text-[#707070] top-0 right-0 bottom-0 left-0 flex items-center justify-center -mt-[12rem]'>Say Hello</p>
