@@ -27,7 +27,7 @@ const App = () => {
       });
     }
 
-    const lenis = new Lenis({ lerp: 0.05 });
+    const lenis = new Lenis({ lerp: 0.05, smoothTouch: true });
     lenis.on('scroll', (e) => {
       console.log(e);
     });
