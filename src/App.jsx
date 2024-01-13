@@ -16,25 +16,37 @@ const App = () => {
     function handleLoad() {
       setIsLoading(false);
     }
-  
-    window.onload = handleLoad;
-  
+
+    if (document.readyState === 'complete') {
+      handleLoad();
+    } else {
+      document.addEventListener('readystatechange', () => {
+        if (document.readyState === 'complete') {
+          handleLoad();
+        }
+      });
+    }
+
+
     const lenis = new Lenis({smoothTouch: true });
-    
     lenis.on('scroll', (e) => {
       console.log(e);
     });
-  
+
+    lenis.on('touch', (e) => {
+      console.log(e);
+    });
+
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
-  
+
     requestAnimationFrame(raf);
-  
+
     return () => {
       lenis.destroy();
-      window.onload = null;
+      document.removeEventListener('readystatechange', handleLoad);
     };
   }, []);
 
