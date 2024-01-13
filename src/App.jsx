@@ -16,38 +16,25 @@ const App = () => {
     function handleLoad() {
       setIsLoading(false);
     }
-
-    if (document.readyState === 'complete') {
-      handleLoad();
-    } else {
-      document.addEventListener('readystatechange', () => {
-        if (document.readyState === 'complete') {
-          handleLoad();
-        }
-      });
-    }
-
-    const lerpValue = window.innerWidth <= 768 ? 0.2 : undefined;
-
-    const lenis = new Lenis({ lerp: lerpValue, smoothTouch: true, touchMultiplier: 1 });
+  
+    window.onload = handleLoad;
+  
+    const lenis = new Lenis({smoothTouch: true });
+    
     lenis.on('scroll', (e) => {
       console.log(e);
     });
-
-    lenis.on('touch', (e) => {
-      console.log(e);
-    });
-
+  
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
     }
-
+  
     requestAnimationFrame(raf);
-
+  
     return () => {
       lenis.destroy();
-      document.removeEventListener('readystatechange', handleLoad);
+      window.onload = null;
     };
   }, []);
 
