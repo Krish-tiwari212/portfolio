@@ -7,12 +7,12 @@ const Marquee = () => {
 
   useGSAP(() => {
     const containerWidth = containerRef.current.clientWidth;
-    const animationDuration = containerWidth / 50; 
+    const animationDuration = containerWidth / 250; 
 
     gsap.to(containerRef.current, {
       x: -containerWidth,
       repeat: -1,
-      duration: 5,
+      duration: animationDuration,
       ease: "linear",
     });
   }, []);
