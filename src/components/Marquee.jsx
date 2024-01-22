@@ -20,8 +20,7 @@ const Marquee = () => {
   return (
     <div
       ref={containerRef}
-      className="track absolute top-[3vh] sm:top-[30vh] min-w-max overflow-hidden font-geist-bold font-bold text-[15rem] text-white"
-      style={{ whiteSpace: "nowrap" }}
+      className="track absolute top-[3vh] sm:top-[30vh] min-w-max overflow-hidden font-geist-bold font-bold text-[15rem] text-white whitespace-nowrap"
     >
       <h1 className="text-shadow-xl">
         KRISH 克里希 クリシュ कृष கிரிஷ் KRISH 克里希 クリシュ कृष கிரிஷ் KRISH 克里希 クリシュ कृष கிரிஷ்
