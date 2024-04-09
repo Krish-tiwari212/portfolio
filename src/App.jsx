@@ -29,13 +29,6 @@ const App = () => {
 
 
     const lenis = new Lenis({smoothTouch: true });
-    lenis.on('scroll', (e) => {
-      console.log(e);
-    });
-
-    lenis.on('touch', (e) => {
-      console.log(e);
-    });
 
     function raf(time) {
       lenis.raf(time);
