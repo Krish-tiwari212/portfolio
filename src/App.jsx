@@ -27,8 +27,7 @@ const App = () => {
       });
     }
 
-
-    const lenis = new Lenis({smoothTouch: true });
+    const lenis = new Lenis();
 
     function raf(time) {
       lenis.raf(time);
