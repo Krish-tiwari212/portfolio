@@ -57,3 +57,14 @@
 html{
     overflow-x: hidden;
 }
+
+.animated-cursor{
+    background-color: hsl(0, 85%, 41%);
+    pointer-events: none;
+    border: none;
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    will-change: transform;
+  }

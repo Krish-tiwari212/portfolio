@@ -16,6 +16,9 @@ import { FaPython } from "react-icons/fa6";
 import { SiExpress } from "react-icons/si";
 import { SiNextdotjs } from "react-icons/si";
 import { SiCanva } from "react-icons/si";
+import { SiSvelte } from "react-icons/si";
+import { SiNeo4J } from "react-icons/si";
+import { SiTypescript } from "react-icons/si";
 
 import Stack from '../Stack';
 
@@ -25,8 +28,8 @@ const Section5 = () => {
         <h2 className='flex text-[4vh] font-bold pb-2 mt-7 font-geist-light'>
           <FaArrowTurnDown className='mt-3 font-geist-light text-[3vh]' /> Stack
         </h2>
-        <TableSkeleton numCoulmns={8} numRows={1} cl='' cd='absolute -mt-7 h-[63rem] sm:h-[64rem] lg:h-[65rem] border-t-2 border-slate-50' />
-        <div className='h-[60rem] -mt-8 sm:h-[61rem] lg:h-[62rem]'>
+        <TableSkeleton numCoulmns={8} numRows={1} cl='' cd='absolute -mt-7 h-[73rem] sm:h-[74rem] lg:h-[74rem] border-t-2 border-slate-50' />
+        <div className='h-[70rem] -mt-8 sm:h-[71rem] lg:h-[72rem]'>
             <div className='flex justify-around'>
                 <Stack logo={IoLogoFigma} name="Figma" category="Design"/>
                 <Stack logo={SiPostman} name="Postman" category="Api"/>
@@ -51,6 +54,11 @@ const Section5 = () => {
                 <Stack logo={SiExpress} name="Express.js" category="Backend"/>
                 <Stack logo={SiNextdotjs} name="Next.js" category="Framework"/>
                 <Stack logo={SiCanva} name="Canva" category="Design"/>
+            </div>
+            <div className='flex justify-around mt-20'>
+                <Stack logo={SiSvelte} name="Svelte" category="Frontend"/>
+                <Stack logo={SiNeo4J} name="Neo4j" category="Database"/>
+                <Stack logo={SiTypescript} name="Typescript" category="Language"/>
             </div>
         </div>
     </section>

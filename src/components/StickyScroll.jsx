@@ -5,9 +5,9 @@ import ProjectCard from './ProjectCard';
 import { useGSAP } from '@gsap/react';
 import vitrate from '../assets/images/vitrate.png';
 import raccoon from '../assets/images/raccoon.png';
-import groco from '../assets/images/groco.png';
 import avidya from '../assets/images/avidya.png';
 import travor from '../assets/images/travor.png';
+import jivan from '../assets/images/jivan.png';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,11 +42,12 @@ const StickyScroll = () => {
   return (
     
         <div className='cards -mt-5 pb-[38.5vh] sm:pb-[45vh] md:pb-[52vh] lg:pb-[76vh]' ref={cardContainerRef}>
-            <ProjectCard color="bg-[#F2AFEF]" cl="card" url="https://www.vitrate.tech/" name="Vitrate" year="2023" image={vitrate} techstack="Flask, Postgresql, Postman, Algolia, Js"/>
-            <ProjectCard color="bg-[#F1E4C3]" cl="card" url="https://raccoon-tshirt.onrender.com/" name="Raccoon" year="2023" image={raccoon} techstack="Flask, Snipcart, Postgresql, Postman, Js"/>
-            <ProjectCard color="bg-[#C6A969]" cl="card" url="http://groco.onrender.com/" name="Groco" year="2023" image={groco} techstack="Flask, Postgresql, Postman, Snipcart, Js"/>
+            <ProjectCard color="bg-[#FAE8E0]" cl="card" url="https://jivanhealth.in/" name="Jivan Medical" year="2024" image={jivan} techstack="Next JS, Prisma, ShadCN, Tailwind, TS"/>
+            <ProjectCard color="bg-[#F2AFEF]" cl="card" url="https://vitrate-z8pd.onrender.com/" name="Vitrate" year="2024" image={vitrate} techstack="Flask, Postgresql, Postman, Algolia, Js"/>
+            <ProjectCard color="bg-[#F1E4C3]" cl="card" url="https://raccoon-tshirt.onrender.com/" name="Raccoon" year="2024" image={raccoon} techstack="Flask, Snipcart, Postgresql, Postman, Js"/>
+            {/* <ProjectCard color="bg-[#C6A969]" cl="card" url="http://groco.onrender.com/" name="Groco" year="2023" image={groco} techstack="Flask, Postgresql, Postman, Snipcart, Js"/> */}
             <ProjectCard color="bg-[#C6CF9B]" cl="card" url="https://avidya.onrender.com/" name="Avidya" year="2023" image={avidya} techstack="Flask, Postgresql, Postman, Snipcart, Js"/>
-            <ProjectCard color="bg-[#FF9800]" cl="card" url="https://travor.onrender.com/" name="Travor" year="2023" image={travor} techstack="Flask, Postgresql, Postman, Snipcart, Js"/>
+            <ProjectCard color="bg-[#FF9800]" cl="card" url="https://travor.onrender.com/" name="Travor" year="2023" image={travor} techstack="Next JS, TailwindCSS, Postman, Snipcart, FastAPI"/>
         </div>
     
   );
