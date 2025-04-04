@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import { FaArrowTurnDown } from 'react-icons/fa6';
 import TableSkeleton from '../TableSkeleton';
 import BlurredCircle from '../BlurredCircle';
@@ -29,14 +29,14 @@ const Section6 = () => {
             </div>
             <p className='absolute text-[#707070] top-0 right-0 bottom-0 left-0 flex items-center justify-center -mt-[12rem]'>Say Hello</p>
             <h2>
-                <a href="mailto:krishtiwari2122@gmail.com" className='text-[7vw] md:text-[3rem] absolute top-0 right-0 bottom-0 -mt-[6rem] left-0 flex items-center justify-center'>krishtiwari2122@gmail.com</a>
+                <a href="mailto:krishtiwari2122@gmail.com" target="_blank" rel="noopener noreferrer" className='text-[7vw] md:text-[3rem] absolute top-0 right-0 bottom-0 -mt-[6rem] left-0 flex items-center justify-center'>krishtiwari2122@gmail.com</a>
             </h2>
             <div className='bottom-0 absolute right-0 left-3 mb-8'>
                 <h2>Made with ❤️ by Krish</h2>
             </div>
             <div className='bottom-0 absolute right-3 mb-8 flex'>
-                <a href="https://www.instagram.com/krish_tiwari215/"><FaInstagram className='text-[#707070] text-[1.5rem] hover:text-[#e1306c] cursor-pointer'/></a>
-                <a href="https://github.com/Krish-tiwari212"><FaGithub className='text-[#707070] text-[1.5rem] ml-2 hover:text-[#e1306c] cursor-pointer'/></a>
+                <a href="https://www.instagram.com/krishhtiwarii" target="_blank" rel="noopener noreferrer"><FaInstagram className='text-[#707070] text-[1.5rem] hover:text-[#e1306c] cursor-pointer'/></a>
+                <a href="https://github.com/Krish-tiwari212" target="_blank" rel="noopener noreferrer"><FaGithub className='text-[#707070] text-[1.5rem] ml-2 hover:text-[#e1306c] cursor-pointer'/></a>
             </div>
         </div>
         

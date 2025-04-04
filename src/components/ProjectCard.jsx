@@ -1,4 +1,3 @@
-import React from 'react';
 import { IoArrowBackCircleSharp } from 'react-icons/io5';
 
 const ProjectCard = ({ cl, color, index, year, techstack, name, image, url }) => {
@@ -11,7 +10,7 @@ const ProjectCard = ({ cl, color, index, year, techstack, name, image, url }) =>
       <div className='border-[0.1em] border-[#2e2828] mt-3' />
       <div className='flex mt-4'>
         <h2 className='text-black font-bold text-4xl'>{name}</h2>
-        <a className='ml-auto' href={url}><IoArrowBackCircleSharp className='text-4xl text-black hover:scale-[110%] rotate-[135deg]' /></a>
+        <a className='ml-auto' href={url} target="_blank" rel="noopener noreferrer"><IoArrowBackCircleSharp className='text-4xl text-black hover:scale-[110%] rotate-[135deg]' /></a>
       </div>
       <img
         className='mt-5 object-center h-auto object-cover w-full' // Use w-full to make it full width

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { TbMenu } from "react-icons/tb";
 import { RxCross1 } from "react-icons/rx";
 import { gsap } from 'gsap';
@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollToPlugin);
 
 const Navbar = () => {
   const navItems = {
-    'Resume': 'https://drive.google.com/file/d/1mbVJnMebTJ62WikbEk9uiBezCEIE2MLm/view?usp=drive_link',
+    'Resume': 'https://drive.google.com/file/d/1tU6ey4BqzD4QTThLE4oLYJ82IO4p65cQ/view?usp=sharing',
     'About': '#about',
     'LinkedIn': 'https://www.linkedin.com/in/krish-tiwari',
     'Contact': '#contact'
@@ -34,7 +34,7 @@ const handleNavItemClick = (event) => {
           <ul className='text-white space-y-8 text-2xl'>
             {Object.entries(navItems).map(([item, url], index) => (
               <li key={index} className='hover:text-[#e6e6e6]'>
-                <a href={url} onClick={handleNavItemClick}>{item}</a>
+                <a href={url} onClick={handleNavItemClick} target={url.startsWith('#') ? '' : '_blank'} rel={url.startsWith('#') ? '' : 'noopener noreferrer'}>{item}</a>
               </li>
             ))}
           </ul>
@@ -48,7 +48,7 @@ const handleNavItemClick = (event) => {
         <ul className={`hidden text-[#707070] sm:text-sm sm:mt-7 sm:mr-[8vw] sm:flex sm:space-y-0 sm:space-x-6 sm:flex-row`}>
           {Object.entries(navItems).map(([item, url], index) => (
             <li key={index} className='hover:text-[#e6e6e6]'>
-              <a href={url} onClick={handleNavItemClick}>{item}</a>
+              <a href={url} onClick={handleNavItemClick} target={url.startsWith('#') ? '' : '_blank'} rel={url.startsWith('#') ? '' : 'noopener noreferrer'}>{item}</a>
             </li>
           ))}
         </ul>
