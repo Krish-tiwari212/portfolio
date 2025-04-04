@@ -5,38 +5,41 @@ import Marquee from '../Marquee';
 import "../../index.css";
 import { gsap } from 'gsap';
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
-import { useGSAP } from '@gsap/react';
 
 const Section1 = () => {
   const [numColumns, setNumColumns] = useState(17);
   const [numRows, setNumRows] = useState(16);
   const buttonRef = useRef(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
-  useGSAP(() => {
-    // Register ScrollToPlugin
+  // Register ScrollToPlugin
+  useEffect(() => {
     gsap.registerPlugin(ScrollToPlugin);
-    
-    // Add cursor movement effect to button
-    const updateButtonPosition = (e) => {
+  }, []);
+
+  // Handle cursor movement for button
+  useEffect(() => {
+    const handleMouseMove = (e) => {
       if (!buttonRef.current) return;
       
-      const moveX = (e.clientX - window.innerWidth / 2) / 50;
-      const moveY = (e.clientY - window.innerHeight / 2) / 50;
+      // Calculate movement based on cursor position
+      // Using a more direct approach with state updates
+      const x = (e.clientX / window.innerWidth) * 30 - 15; // Range: -15px to 15px
+      const y = (e.clientY / window.innerHeight) * 30 - 15; // Range: -15px to 15px
       
-      gsap.to(buttonRef.current, {
-        x: moveX,
-        y: moveY,
-        duration: 0.5,
-        ease: "power2.out"
-      });
+      setPosition({ x, y });
     };
 
-    window.addEventListener('mousemove', updateButtonPosition);
-
-    return () => {
-      window.removeEventListener('mousemove', updateButtonPosition);
-    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
+
+  // Apply the position to the button using inline style
+  useEffect(() => {
+    if (buttonRef.current) {
+      buttonRef.current.style.transform = `translate(${position.x}px, ${position.y}px)`;
+    }
+  }, [position]);
 
   useEffect(() => {
     // Adjust the number of columns and rows based on the screen width
@@ -65,7 +68,8 @@ const Section1 = () => {
             <button 
               ref={buttonRef}
               onClick={scrollToContact}
-              className="bg-transparent border border-white text-white hover:bg-white hover:text-black font-geist-light py-2 px-8 rounded-full transform transition-all duration-300 animate-pulse-custom"
+              className="bg-black bg-opacity-50 border border-white text-white hover:border-[#6b6b6b] hover:bg-white hover:text-black font-geist-light py-2 px-8 rounded-full transition-colors duration-300 animate-pulse-custom"
+              style={{ transition: 'transform 0.1s linear' }}
             >
               Contact Me
             </button>

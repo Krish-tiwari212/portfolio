@@ -71,12 +71,12 @@ html{
 
 @keyframes pulse-custom {
     0% {
-        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3);
         transform: scale(1);
     }
-    70% {
-        box-shadow: 0 0 0 8px rgba(255, 255, 255, 0);
-        transform: scale(1.03);
+    50% {
+        box-shadow: 0 0 0 5px rgba(255, 255, 255, 0);
+        transform: scale(1.02);
     }
     100% {
         box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
