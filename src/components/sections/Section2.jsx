@@ -29,7 +29,7 @@ const Section2 = () => {
   return (
     <section className='h-[58vh] sm:h-[65vh] -mt-6 mx-2 lg:mx-40 sm:mx-20  relative'>
         <TableSkeleton numCoulmns={8} numRows={1} cl="h-[55vh] sm:h-[60vh]" cd= ""/>
-        <h2 className='sm:px-[2vw] px-[1vw] text-center top-[6vh] sm:top-[14vh] leading-[1] absolute font-geist-regular text-[5vh] md:text-[7vh] sm:text-5xl'>Hi! I am a freelance developer, building SaaS for founders</h2>
+        <h2 className='sm:px-[2vw] px-[1vw] text-center top-[6vh] sm:top-[14vh] leading-[1] absolute font-geist-regular text-[5vh] md:text-[7vh] sm:text-5xl'>I am a freelance developer, building cool applications for founders</h2>
         <div className='flex'>
           <h3 className='absolute text-center z-10 sm:right-20 bottom-[4.2rem] right-[7vh] sm:bottom-20 sm:text-lg '>Open to Work <br /> <span className='text-[1rem] text-[#8a7979] '>Based in India</span></h3>
           <img
