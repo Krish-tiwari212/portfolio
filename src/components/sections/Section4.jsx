@@ -16,7 +16,7 @@ const Section4 = () => {
           </div>
           <div className='lg:order-1 pt-5 lg:pt-0 absolute z-10 lg:static md:mt-6 lg:w-1/2'>
             <h2 className='lg:text-[2.5vw] lg:-mt-5  text-[8.8vw] sm:text-[5vw] sm:leading-[5vh] lg:leading-[6vh]  leading-[4.5vh] z-[100]'>
-              I am Krish, a developer who turns caffeine into SaaS products. When I'm not staring at error wondering where the semicolon went missing, I'm building tools that help founders turn their ideas into reality. Some call it coding, I call it digital problem solving with occasional swearing.
+              I am Krish, a developer who turns caffeine into SaaS products. When I'm not staring at error wondering where the semicolon went missing, I'm building tools that help founders turn their ideas into reality. Some call it coding, I call it problem solving with occasional swearing.
    
             </h2>
           </div>
