@@ -213,17 +213,32 @@ const LoadingScreen = ({ onLoadingComplete, assetUrls = [] }) => {
       </div>
       
       {/* Bottom section with loader */}
-      <div className="fixed bottom-[15vh] left-0 right-0 flex justify-center z-20">
-        {/* Loader box */}
+      <div className="fixed bottom-[15vh] left-0 right-0 flex flex-col items-center z-20">
+        {/* Loader box with percentage indicator inside */}
         <div 
           ref={loaderBoxRef}
           className="w-[100vw] h-[30vh] sm:h-[35vh] relative overflow-hidden"
         >
+          {/* Loader fill */}
           <div 
             ref={loaderFillRef} 
             className="absolute top-0 left-0 h-full bg-white"
-            style={{ width: '0px' }} /* Use pixels instead of percentage for extra reliability */
+            style={{ width: '0px' }}
           ></div>
+          
+          {/* Percentage indicator centered in loader */}
+          <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+            <div 
+              className="text-xl sm:text-2xl md:text-2xl font-bold z-10 mix-blend-difference"
+              style={{ 
+                color: 'white',
+                // This creates the mix-blend-difference effect which will
+                // automatically invert the text color when the white background passes it
+              }}
+            >
+              {Math.round(progress)}%
+            </div>
+          </div>
         </div>
       </div>
     </div>
