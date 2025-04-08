@@ -1,23 +1,24 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import PropTypes from 'prop-types';
+import { useGSAP } from '@gsap/react';
 
 const LoadingScreen = ({ onLoadingComplete, assetUrls = [] }) => {
   const [progress, setProgress] = useState(0);
   const loadingScreenRef = useRef(null);
   const overlayRef = useRef(null);
-  const counterRef = useRef(null);
-  const progressBarRef = useRef(null);
-  const progressTextRef = useRef(null);
-  const gridRef = useRef(null);
-  const gridItemsRef = useRef([]);
-  const textLinesRef = useRef(null);
-  const textRef = useRef(null);
+  const marqueeContainerRef = useRef(null);
+  const marqueeTextRef = useRef(null);
+  const loaderBoxRef = useRef(null);
+  const loaderFillRef = useRef(null);
 
   // Function to preload images
   const preloadImages = async (urls) => {
     const totalAssets = urls.length;
     let loadedAssets = 0;
+
+    // Start with 0 progress
+    setProgress(0);
 
     const promises = urls.map(
       (url) =>
@@ -40,118 +41,113 @@ const LoadingScreen = ({ onLoadingComplete, assetUrls = [] }) => {
     await Promise.all(promises);
   };
 
-  // Create grid items
-  useEffect(() => {
-    // Create grid items dynamically
-    if (gridRef.current) {
-      const gridItems = [];
-      for (let i = 0; i < 36; i++) {
-        const item = document.createElement('div');
-        item.className = 'grid-item bg-[#111111] rounded-md';
-        gridRef.current.appendChild(item);
-        gridItems.push(item);
-      }
-      gridItemsRef.current = gridItems;
+  // Setup marquee animation
+  useGSAP(() => {
+    if (marqueeContainerRef.current && marqueeTextRef.current) {
+      const marqueeWidth = marqueeTextRef.current.offsetWidth;
+      const animationDuration = marqueeWidth / 150; // Adjust speed as needed
+
+      gsap.to(marqueeTextRef.current, {
+        x: -marqueeWidth / 2,
+        repeat: -1,
+        duration: animationDuration,
+        ease: "linear",
+      });
     }
   }, []);
 
   // Initial setup
   useEffect(() => {
-    // Initialize GSAP animations
-    const tl = gsap.timeline();
-    
-    // Animate grid items in
-    if (gridItemsRef.current.length > 0) {
-      tl.fromTo(gridItemsRef.current, 
-        { scale: 0, opacity: 0 },
-        { 
-          scale: 1, 
-          opacity: 1, 
-          duration: 0.8, 
-          stagger: { 
-            amount: 0.5,
-            grid: [6, 6],
-            from: "center"
-          },
-          ease: "power3.out"
-        }
-      );
+    // Force reset loader to 0 width - even before GSAP initializes
+    if (loaderFillRef.current) {
+      loaderFillRef.current.style.width = '0px';
     }
     
-    // Animate text lines
-    tl.fromTo(textLinesRef.current.children,
-      { width: 0 },
-      { 
-        width: "100%", 
-        duration: 0.8, 
-        stagger: 0.1,
-        ease: "power2.inOut"
-      },
-      "-=0.4"
+    // Reset progress state immediately
+    setProgress(0);
+    
+    // Initialize GSAP animations with no initial transition for the loader
+    const tl = gsap.timeline();
+    
+    // Animate marquee in
+    tl.fromTo(marqueeContainerRef.current, 
+      { opacity: 0 },
+      { opacity: 1, duration: 0.8, ease: "power3.out" }
     );
     
-    // Animate counter and progress bar
-    tl.fromTo([counterRef.current, progressBarRef.current, progressTextRef.current, textRef.current],
-      { opacity: 0, y: 20 },
-      { 
-        opacity: 1, 
-        y: 0, 
-        duration: 0.6, 
-        stagger: 0.1,
-        ease: "power2.out"
-      },
-      "-=0.4"
-    );
-
+    // Show loader box immediately without animation
+    if (loaderBoxRef.current) {
+      gsap.set(loaderBoxRef.current, { opacity: 1, y: 0 });
+    }
+    
     // If there are asset URLs, preload them
     if (assetUrls.length > 0) {
       preloadImages(assetUrls);
     } else {
-      // If no assets to preload, simulate loading
-      const interval = setInterval(() => {
-        setProgress((prev) => {
-          const newProgress = prev + 1;
-          if (newProgress >= 100) {
-            clearInterval(interval);
-            return 100;
+      // Clear any previous animations
+      const animationFrame = {
+        id: null
+      };
+      
+      // Add a minimal delay to ensure DOM setup is complete
+      setTimeout(() => {
+        // Force width to 0 again just before starting animation
+        if (loaderFillRef.current) {
+          loaderFillRef.current.style.width = '0px';
+        }
+        
+        let startTime = Date.now();
+        const duration = 4000; // Increased to 4 seconds for a more visible, smoother animation
+        
+        const animateLoader = () => {
+          const elapsed = Date.now() - startTime;
+          
+          // Use a non-linear easing for smoother acceleration/deceleration
+          // This creates a more pleasing, natural-looking animation
+          const progress = Math.min(1, elapsed / duration);
+          
+          // Apply easing function for smoother progress
+          // This is a simple ease-in-out curve
+          const easedProgress = progress < 0.5 
+            ? 2 * progress * progress 
+            : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+          
+          const newProgress = Math.min(100, easedProgress * 100);
+          
+          setProgress(newProgress);
+          
+          if (newProgress < 100) {
+            animationFrame.id = requestAnimationFrame(animateLoader);
           }
-          return newProgress;
-        });
-      }, 30);
-
-      return () => clearInterval(interval);
+        };
+        
+        // Start the animation
+        animationFrame.id = requestAnimationFrame(animateLoader);
+      }, 200); // Slightly longer delay for better visual preparation
+      
+      // Cleanup animation on unmount
+      return () => {
+        if (animationFrame.id) {
+          cancelAnimationFrame(animationFrame.id);
+        }
+      };
     }
   }, [assetUrls]);
 
   // Update animation when progress changes
   useEffect(() => {
-    // Update the counter display
-    if (counterRef.current) {
-      counterRef.current.textContent = progress;
-    }
-    
-    // Animate the progress bar
-    if (progressBarRef.current) {
-      gsap.to(progressBarRef.current, {
-        scaleX: progress / 100,
-        duration: 0.4,
-        ease: "power2.out"
-      });
-    }
-    
-    // Animate grid items based on progress
-    if (gridItemsRef.current.length > 0) {
-      const itemsToAnimate = Math.floor((gridItemsRef.current.length * progress) / 100);
+    // Apply width with a smooth transition for more reliable animation
+    if (loaderFillRef.current) {
+      // Cancel any ongoing GSAP animations
+      gsap.killTweensOf(loaderFillRef.current);
       
-      for (let i = 0; i < itemsToAnimate; i++) {
-        if (gridItemsRef.current[i]) {
-          gsap.to(gridItemsRef.current[i], {
-            backgroundColor: "#f1f1f1",
-            duration: 0.3,
-            ease: "power1.inOut"
-          });
-        }
-      }
+      // Use GSAP for smoother animation
+      gsap.to(loaderFillRef.current, {
+        width: `${progress}%`,
+        duration: 0.5, // Longer duration for smoother movement
+        ease: "power2.out", // Smoother easing function
+        overwrite: true
+      });
     }
     
     // If loading is complete, animate the exit
@@ -163,41 +159,32 @@ const LoadingScreen = ({ onLoadingComplete, assetUrls = [] }) => {
           }
         });
         
-        // Create a dramatic exit animation
-        exitTl.to(textRef.current, {
-          y: -20,
+        // Create a smoother exit animation
+        // First pause for a moment to show the completed loader
+        exitTl.to({}, { duration: 0.5 });
+        
+        // Animate loader out with a smooth transition
+        exitTl.to(loaderBoxRef.current, {
           opacity: 0,
-          duration: 0.4,
-          ease: "power2.in"
+          scale: 1.05,
+          duration: 1.2,
+          ease: "power3.inOut"
         });
         
-        exitTl.to([counterRef.current, progressBarRef.current, progressTextRef.current], {
+        // Animate marquee out simultaneously
+        exitTl.to(marqueeContainerRef.current, {
           opacity: 0,
-          y: -20,
-          duration: 0.4,
-          stagger: 0.1,
-          ease: "power2.in"
-        }, "-=0.2");
-        
-        // Animate grid items out in a wave pattern
-        exitTl.to(gridItemsRef.current, {
-          scale: 1.5,
-          opacity: 0,
-          duration: 0.8,
-          stagger: {
-            amount: 0.5,
-            grid: [6, 6],
-            from: "center"
-          },
+          y: -30,
+          duration: 1.2,
           ease: "power3.inOut"
-        }, "-=0.2");
+        }, "-=1.2");
         
-        // Final fade out
+        // Final fade out with a longer, smoother transition
         exitTl.to(overlayRef.current, {
           opacity: 0,
-          duration: 0.8,
+          duration: 1.5,
           ease: "power2.inOut"
-        }, "-=0.4");
+        }, "-=0.8");
       }, 800); // Delay before exit animation starts
     }
   }, [progress, onLoadingComplete]);
@@ -205,55 +192,39 @@ const LoadingScreen = ({ onLoadingComplete, assetUrls = [] }) => {
   return (
     <div 
       ref={loadingScreenRef} 
-      className="fixed inset-0 bg-[#060606] flex flex-col items-center justify-center z-50 overflow-hidden"
+      className="fixed inset-0 bg-black flex flex-col items-center justify-between z-50 overflow-hidden"
     >
-      <div ref={overlayRef} className="absolute inset-0 bg-[#060606]"></div>
+      <div ref={overlayRef} className="absolute inset-0 bg-black"></div>
       
-      {/* Grid animation */}
+      {/* Marquee at the top */}
       <div 
-        ref={gridRef}
-        className="grid grid-cols-6 gap-2 w-[280px] h-[280px] md:w-[400px] md:h-[400px] relative z-10 mb-12"
+        ref={marqueeContainerRef}
+        className="w-full overflow-hidden relative z-10 pt-8"
       >
-        {/* Grid items will be created dynamically */}
-      </div>
-      
-      {/* Text lines */}
-      <div ref={textLinesRef} className="flex flex-col gap-1 mb-8 w-[280px] md:w-[400px] relative z-10">
-        <div className="h-[2px] bg-white opacity-20"></div>
-        <div className="h-[2px] bg-white opacity-40"></div>
-        <div className="h-[2px] bg-white opacity-60"></div>
-      </div>
-      
-      {/* Loading text */}
-      {/* <div 
-        ref={textRef}
-        className="text-white text-xl md:text-2xl font-light mb-6 tracking-widest uppercase z-10"
-      >
-        Loading Experience
-      </div> */}
-      
-      {/* Counter */}
-      <div 
-        ref={counterRef}
-        className="text-[60px] md:text-[80px] font-bold text-white leading-none mb-4 z-10"
-      >
-        {progress}
-      </div>
-      
-      {/* Progress bar */}
-      <div className="w-[280px] md:w-[400px] h-[3px] bg-[#333333] relative z-10 overflow-hidden rounded-full mb-2">
         <div 
-          ref={progressBarRef} 
-          className="absolute top-0 left-0 h-full w-full bg-white origin-left rounded-full"
-          style={{ transform: 'scaleX(0)' }}
-        ></div>
+          ref={marqueeTextRef}
+          className="inline-block whitespace-nowrap"
+        >
+          <h1 className="text-white text-[20em] sm:text-[20rem] md:text-[15rem] font-bold [text-shadow:_0_0_15px_rgba(255,255,255,0.7)]">
+            KRISH 克里希 クリシュ कृष கிரிஷ் KRISH 克里希 クリシュ कृष கிரிஷ் KRISH 克里希 クリシュ कृष கிரிஷ்
+            KRISH 克里希 クリシュ कृष கிரிஷ் KRISH 克里希 クリシュ कृष கிரிஷ் KRISH 克里希 クリシュ कृष கிரிஷ்
+          </h1>
+        </div>
       </div>
       
-      <div 
-        ref={progressTextRef} 
-        className="text-white text-sm tracking-[0.2em] uppercase z-10 opacity-50"
-      >
-        Loading assets
+      {/* Bottom section with loader */}
+      <div className="fixed bottom-[15vh] left-0 right-0 flex justify-center z-20">
+        {/* Loader box */}
+        <div 
+          ref={loaderBoxRef}
+          className="w-[100vw] h-[30vh] sm:h-[40vh] relative overflow-hidden border-[2px]"
+        >
+          <div 
+            ref={loaderFillRef} 
+            className="absolute top-0 left-0 h-full bg-white"
+            style={{ width: '0px' }} /* Use pixels instead of percentage for extra reliability */
+          ></div>
+        </div>
       </div>
     </div>
   );

@@ -100,48 +100,21 @@ const App = () => {
   // Effect for content animation after loading
   useEffect(() => {
     if (!isLoading && contentRef.current) {
-      // Create a timeline for the content reveal animation
-      const tl = gsap.timeline();
+      // Make cursor visible immediately without animation
+      if (circle.current) {
+        gsap.set(circle.current, { scale: 1, opacity: 1 });
+      }
       
-      // Animate the cursor
-      tl.fromTo(circle.current, 
-        { scale: 0, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out" }
-      );
-      
-      // Only animate the navbar if it's not on mobile
-      if (window.innerWidth >= 640 && navbarRef.current) { // 640px is the sm breakpoint in Tailwind
-        tl.fromTo(navbarRef.current,
-          { y: -50, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
-          "-=0.4"
-        );
-      } else if (navbarRef.current) {
-        // On mobile, just make sure the navbar is visible without animation
+      // Make navbar visible immediately
+      if (navbarRef.current) {
         gsap.set(navbarRef.current, { clearProps: "all" });
       }
       
-      // Get only the sections we want to animate (excluding Section3 which has its own animations)
-      const sectionsToAnimate = [
-        contentRef.current.children[0], // Section1
-        contentRef.current.children[1], // Section2
-        contentRef.current.children[3], // Section4
-        contentRef.current.children[4], // Section5
-        contentRef.current.children[5]  // Section6
-      ];
-      
-      // Animate only selected sections
-      tl.fromTo(sectionsToAnimate,
-        { y: 30, opacity: 0 },
-        { 
-          y: 0, 
-          opacity: 1, 
-          duration: 0.8, 
-          stagger: 0.1, 
-          ease: "power3.out" 
-        },
-        "-=0.6"
-      );
+      // Make all sections visible immediately 
+      if (contentRef.current) {
+        const sections = contentRef.current.children;
+        gsap.set(sections, { opacity: 1, y: 0 });
+      }
     }
   }, [isLoading]);
 
@@ -155,7 +128,7 @@ const App = () => {
 
   return (
     <>
-      <div ref={circle} className='w-[30px] h-[30px] bg-[#f1f1f1] rounded-full fixed z-50 pointer-events-none opacity-0'></div>
+      <div ref={circle} className='w-[30px] h-[30px] bg-[#f1f1f1] rounded-full fixed z-50 pointer-events-none'></div>
       <div className='bg-[#060606] font-geist-regular text-[#e6e6e6]'>
         {/* Navbar is outside the animation container to ensure mobile menu works correctly */}
         <Navbar ref={navbarRef} />
