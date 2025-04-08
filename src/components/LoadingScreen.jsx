@@ -217,7 +217,7 @@ const LoadingScreen = ({ onLoadingComplete, assetUrls = [] }) => {
         {/* Loader box */}
         <div 
           ref={loaderBoxRef}
-          className="w-[100vw] h-[30vh] sm:h-[40vh] relative overflow-hidden border-[2px]"
+          className="w-[100vw] h-[30vh] sm:h-[35vh] relative overflow-hidden"
         >
           <div 
             ref={loaderFillRef} 
