@@ -225,12 +225,12 @@ const LoadingScreen = ({ onLoadingComplete, assetUrls = [] }) => {
       </div>
       
       {/* Loading text */}
-      <div 
+      {/* <div 
         ref={textRef}
         className="text-white text-xl md:text-2xl font-light mb-6 tracking-widest uppercase z-10"
       >
         Loading Experience
-      </div>
+      </div> */}
       
       {/* Counter */}
       <div 

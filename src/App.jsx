@@ -99,7 +99,7 @@ const App = () => {
 
   // Effect for content animation after loading
   useEffect(() => {
-    if (!isLoading && contentRef.current && navbarRef.current) {
+    if (!isLoading && contentRef.current) {
       // Create a timeline for the content reveal animation
       const tl = gsap.timeline();
       
@@ -109,12 +109,17 @@ const App = () => {
         { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out" }
       );
       
-      // Animate the navbar
-      tl.fromTo(navbarRef.current,
-        { y: -50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
-        "-=0.4"
-      );
+      // Only animate the navbar if it's not on mobile
+      if (window.innerWidth >= 640 && navbarRef.current) { // 640px is the sm breakpoint in Tailwind
+        tl.fromTo(navbarRef.current,
+          { y: -50, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+          "-=0.4"
+        );
+      } else if (navbarRef.current) {
+        // On mobile, just make sure the navbar is visible without animation
+        gsap.set(navbarRef.current, { clearProps: "all" });
+      }
       
       // Get only the sections we want to animate (excluding Section3 which has its own animations)
       const sectionsToAnimate = [
@@ -152,9 +157,8 @@ const App = () => {
     <>
       <div ref={circle} className='w-[30px] h-[30px] bg-[#f1f1f1] rounded-full fixed z-50 pointer-events-none opacity-0'></div>
       <div className='bg-[#060606] font-geist-regular text-[#e6e6e6]'>
-        <div className='mt-5 -mb-5' ref={navbarRef}>
-          <Navbar />
-        </div>
+        {/* Navbar is outside the animation container to ensure mobile menu works correctly */}
+        <Navbar ref={navbarRef} />
         <div ref={contentRef}>
           <Section1 />
           <Section2 />
