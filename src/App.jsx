@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Lenis from 'lenis';
 import Navbar from './components/Navbar';
 import Section1 from './components/sections/Section1';
@@ -9,12 +9,52 @@ import Section4 from './components/sections/Section4';
 import Section5 from './components/sections/Section5';
 import Section6 from './components/sections/Section6';
 import gsap from "gsap";
+import LoadingScreen from './components/LoadingScreen';
+
+// Import all images for preloading
+import asteriskImg from './assets/images/asterisk.svg';
+import avidyaImg from './assets/images/avidya.png';
+import balancedImg from './assets/images/balanced.png';
+import grocoImg from './assets/images/groco.png';
+import jivanImg from './assets/images/jivan.png';
+import liveplayImg from './assets/images/liveplay.png';
+import meImg from './assets/images/me.png';
+import nutonImg from './assets/images/nuton.png';
+import raccoonImg from './assets/images/raccoon.png';
+import realMe1Img from './assets/images/real_me_1.png';
+import realMeImg from './assets/images/real_me.jpeg';
+import scrollImg from './assets/images/Scroll.png';
+import stackGifImg from './assets/images/stack.gif';
+import stackWebpImg from './assets/images/stack.webp';
+import travorImg from './assets/images/travor.png';
+import vitrateImg from './assets/images/vitrate.png';
+
+// Image paths for preloading
+const imageAssets = [
+  asteriskImg,
+  avidyaImg,
+  balancedImg,
+  grocoImg,
+  jivanImg,
+  liveplayImg,
+  meImg,
+  nutonImg,
+  raccoonImg,
+  realMe1Img,
+  realMeImg,
+  scrollImg,
+  stackGifImg,
+  stackWebpImg,
+  travorImg,
+  vitrateImg
+];
 
 const App = () => {
-  const size = 30;
   const circle = useRef();
   const mouse = useRef({ x: 0, y: 0 });
   const delayedMouse = useRef({ x: 0, y: 0 });
+  const contentRef = useRef(null);
+  const navbarRef = useRef(null);
 
   const handleMouseMove = (e) => {
     mouse.current = { x: e.clientX, y: e.clientY };
@@ -30,7 +70,7 @@ const App = () => {
     const { x, y } = delayedMouse.current;
     delayedMouse.current = {
       x: lerp(x, mouse.current.x, 0.075),
-      y: lerp(y, mouse.current.y, 0.075), // Corrected this line
+      y: lerp(y, mouse.current.y, 0.075),
     };
     animateCursor(delayedMouse.current.x, delayedMouse.current.y);
     window.requestAnimationFrame(animation);
@@ -39,21 +79,8 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    function handleLoad() {
-      setIsLoading(false);
-    }
     animation();
     window.addEventListener("mousemove", handleMouseMove);
-
-    if (document.readyState === 'complete') {
-      handleLoad();
-    } else {
-      document.addEventListener('readystatechange', () => {
-        if (document.readyState === 'complete') {
-          handleLoad();
-        }
-      });
-    }
 
     const lenis = new Lenis();
 
@@ -66,33 +93,76 @@ const App = () => {
 
     return () => {
       lenis.destroy();
-      document.removeEventListener('readystatechange', handleLoad);
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
+  // Effect for content animation after loading
+  useEffect(() => {
+    if (!isLoading && contentRef.current && navbarRef.current) {
+      // Create a timeline for the content reveal animation
+      const tl = gsap.timeline();
+      
+      // Animate the cursor
+      tl.fromTo(circle.current, 
+        { scale: 0, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out" }
+      );
+      
+      // Animate the navbar
+      tl.fromTo(navbarRef.current,
+        { y: -50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
+        "-=0.4"
+      );
+      
+      // Get only the sections we want to animate (excluding Section3 which has its own animations)
+      const sectionsToAnimate = [
+        contentRef.current.children[0], // Section1
+        contentRef.current.children[1], // Section2
+        contentRef.current.children[3], // Section4
+        contentRef.current.children[4], // Section5
+        contentRef.current.children[5]  // Section6
+      ];
+      
+      // Animate only selected sections
+      tl.fromTo(sectionsToAnimate,
+        { y: 30, opacity: 0 },
+        { 
+          y: 0, 
+          opacity: 1, 
+          duration: 0.8, 
+          stagger: 0.1, 
+          ease: "power3.out" 
+        },
+        "-=0.6"
+      );
+    }
+  }, [isLoading]);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
   if (isLoading) {
-    return (
-      <div className='w-full h-[100vh] bg-[#060606] text-white grid grid-cols-1 grid-rows-1 place-items-center'>
-        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" className="bi bi-arrow-repeat animate-spin" viewBox="0 0 16 16">
-          <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
-          <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
-        </svg>
-      </div>
-    );
+    return <LoadingScreen onLoadingComplete={handleLoadingComplete} assetUrls={imageAssets} />;
   }
 
   return (
     <>
-      <div ref={circle} className='w-[30px] h-[30px] bg-[#f1f1f1] rounded-full fixed z-50 pointer-events-none'></div>
+      <div ref={circle} className='w-[30px] h-[30px] bg-[#f1f1f1] rounded-full fixed z-50 pointer-events-none opacity-0'></div>
       <div className='bg-[#060606] font-geist-regular text-[#e6e6e6]'>
-        <Navbar />
-        <Section1 />
-        <Section2 />
-        <Section3 />
-        <Section4 />
-        <Section5 />
-        <Section6 />
+        <div className='mt-5 -mb-5' ref={navbarRef}>
+          <Navbar />
+        </div>
+        <div ref={contentRef}>
+          <Section1 />
+          <Section2 />
+          <Section3 />
+          <Section4 />
+          <Section5 />
+          <Section6 />
+        </div>
       </div>
     </>
   );
