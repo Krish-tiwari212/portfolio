@@ -205,7 +205,7 @@ const LoadingScreen = ({ onLoadingComplete, assetUrls = [] }) => {
           ref={marqueeTextRef}
           className="inline-block whitespace-nowrap"
         >
-          <h1 className="text-white text-[15rem] sm:text-[20rem] md:text-[15rem] font-bold [text-shadow:_0_0_15px_rgba(255,255,255,0.7)]">
+          <h1 className="text-white text-[12rem] sm:text-[20rem] md:text-[15rem] font-bold [text-shadow:_0_0_15px_rgba(255,255,255,0.7)]">
             KRISH 克里希 クリシュ कृष கிரிஷ் KRISH 克里希 クリシュ कृष கிரிஷ் KRISH 克里希 クリシュ कृष கிரிஷ்
             KRISH 克里希 クリシュ कृष கிரிஷ் KRISH 克里希 クリシュ कृष கிரிஷ் KRISH 克里希 クリシュ कृष கிரிஷ்
           </h1>
