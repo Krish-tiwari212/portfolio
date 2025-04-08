@@ -9,7 +9,11 @@ import Section4 from './components/sections/Section4';
 import Section5 from './components/sections/Section5';
 import Section6 from './components/sections/Section6';
 import gsap from "gsap";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import LoadingScreen from './components/LoadingScreen';
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 // Import all images for preloading
 import asteriskImg from './assets/images/asterisk.svg';
@@ -78,11 +82,18 @@ const App = () => {
 
   const [isLoading, setIsLoading] = useState(true);
 
+  // Setup smooth scrolling and cursor
   useEffect(() => {
     animation();
     window.addEventListener("mousemove", handleMouseMove);
 
-    const lenis = new Lenis();
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+    });
 
     function raf(time) {
       lenis.raf(time);
@@ -91,13 +102,31 @@ const App = () => {
 
     requestAnimationFrame(raf);
 
+    // Make sure ScrollTrigger works with Lenis
+    lenis.on('scroll', ScrollTrigger.update);
+
+    // Important: Refresh ScrollTrigger when scrolling is complete
+    lenis.on('complete', () => {
+      ScrollTrigger.refresh();
+    });
+
     return () => {
       lenis.destroy();
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
 
-  // Effect for content animation after loading
+  // Effect specifically for ScrollTrigger refresh after loading
+  useEffect(() => {
+    if (!isLoading) {
+      // Refresh ScrollTrigger after content is loaded and visible
+      setTimeout(() => {
+        ScrollTrigger.refresh(true);
+      }, 100);
+    }
+  }, [isLoading]);
+
+  // Effect for content visibility after loading
   useEffect(() => {
     if (!isLoading && contentRef.current) {
       // Make cursor visible immediately without animation
@@ -110,10 +139,13 @@ const App = () => {
         gsap.set(navbarRef.current, { clearProps: "all" });
       }
       
-      // Make all sections visible immediately 
+      // Make all sections visible without animations that might interfere with ScrollTrigger
       if (contentRef.current) {
-        const sections = contentRef.current.children;
-        gsap.set(sections, { opacity: 1, y: 0 });
+        gsap.set(contentRef.current.children, { 
+          opacity: 1,
+          y: 0,
+          clearProps: "all" // This is important to remove any transform that might interfere with ScrollTrigger
+        });
       }
     }
   }, [isLoading]);
@@ -130,7 +162,6 @@ const App = () => {
     <>
       <div ref={circle} className='w-[30px] h-[30px] bg-[#f1f1f1] rounded-full fixed z-50 pointer-events-none'></div>
       <div className='bg-[#060606] font-geist-regular text-[#e6e6e6]'>
-        {/* Navbar is outside the animation container to ensure mobile menu works correctly */}
         <Navbar ref={navbarRef} />
         <div ref={contentRef}>
           <Section1 />
