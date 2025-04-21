@@ -42,7 +42,7 @@ const StickyScroll = () => {
   return (
     
         <div className='cards -mt-5 pb-[38.5vh] sm:pb-[45vh] md:pb-[52vh] lg:pb-[76vh]' ref={cardContainerRef}>
-            <ProjectCard color="bg-[#C6CF9B]" cl="card" url="https://nutonai.com" name="Nuton AI" year="2025" image={nuton} techstack="FastAPI, Next JS, Langchain, Pinecone, Supabase"/>
+            <ProjectCard color="bg-[#C6CF9B]" cl="card" url="https://nuton-ai.vercel.app" name="Nuton AI" year="2025" image={nuton} techstack="FastAPI, Next JS, Langchain, Pinecone, Supabase"/>
             <ProjectCard color="bg-[#F1E4C3]" cl="card" url="https://thebalanced.news" name="The Balanced News" year="2025" image={balanced} techstack="Next JS, Tailwind CSS, Postgresql, Postman"/>
             <ProjectCard color="bg-[#FF9800]" cl="card" url="https://liveplay.in" name="Liveplay" year="2024" image={liveplay} techstack="Next JS, Tailwind, Supabase, Snipcart, FastAPI"/>
             <ProjectCard color="bg-[#FAE8E0]" cl="card" url="https://jivanhealth.in/" name="Jivan Medical" year="2023" image={jivan} techstack="Next JS, Prisma, ShadCN, Tailwind, TS"/>
